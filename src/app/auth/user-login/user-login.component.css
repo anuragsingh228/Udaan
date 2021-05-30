@@ -1,0 +1,9 @@
+body > .grid {
+  height: 100%;
+}
+.image {
+  margin-top: -90px;
+}
+.column {
+  max-width: 450px;
+}

@@ -2,13 +2,33 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { UserLoginComponent } from './auth/user-login/user-login.component';
+import { UserSignupComponent } from './auth/user-signup/user-signup.component';
+import { UserFeedComponent } from './users/user-feed/user-feed.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ReviewListComponent } from './users/review-list/review-list.component';
+import { NotificationComponent } from './users/notification/notification.component';
+import { BooksComponent } from './books/books.component';
+import { RateNowBooksComponent } from './books/rate-now-books/rate-now-books.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomepageComponent,
+    UserLoginComponent,
+    UserSignupComponent,
+    UsersComponent,
+    UserFeedComponent,
+    ReviewListComponent,
+    NotificationComponent,
+    BooksComponent,
+    RateNowBooksComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
