@@ -12,6 +12,8 @@ import { NotificationComponent } from './users/notification/notification.compone
 import { BooksComponent } from './books/books.component';
 import { RateNowBooksComponent } from './books/rate-now-books/rate-now-books.component';
 import { UsersComponent } from './users/users.component';
+import { FormsModule } from '@angular/forms';
+import {  HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { UsersComponent } from './users/users.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

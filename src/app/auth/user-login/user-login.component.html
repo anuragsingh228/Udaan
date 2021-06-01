@@ -6,21 +6,22 @@
           Log-in to your account
         </div>
       </h2>
-      <form action="" method="get" class="ui large form">
+      <form class="ui large form" (submit) = "onLogin(loginForm)" #loginForm = "ngForm">
         <div class="ui stacked secondary  segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" name="email" placeholder="E-mail address">
+              <input type="email" name="email" placeholder="E-mail address" name="email" ngModel #emailInput = "ngModel" required>
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password">
+              <input type="password" name="password" ngModel placeholder="Password" #passwordInput="ngModel" required>
             </div>
           </div>
-          <div class="ui fluid large submit primary button">Login</div>
+            <button type="submit" class="ui primary button" style="width: 100%;"> Login</button>
+
         </div>
 
         <div class="ui error message"></div>
