@@ -12,9 +12,11 @@ import { NotificationComponent } from './users/notification/notification.compone
 import { BooksComponent } from './books/books.component';
 import { RateNowBooksComponent } from './books/rate-now-books/rate-now-books.component';
 import { UsersComponent } from './users/users.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
-
+import { ReviewCreationComponent } from './users/review-creation/review-creation.component';
+import { QuillModule } from 'ngx-quill';
+import { ProfileComponent } from './users/profile/profile.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +28,17 @@ import {  HttpClientModule } from '@angular/common/http';
     ReviewListComponent,
     NotificationComponent,
     BooksComponent,
-    RateNowBooksComponent
+    RateNowBooksComponent,
+    ReviewCreationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

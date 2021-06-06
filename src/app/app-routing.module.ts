@@ -4,6 +4,8 @@ import { UserLoginComponent } from './auth/user-login/user-login.component';
 import { UserSignupComponent } from './auth/user-signup/user-signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NotificationComponent } from './users/notification/notification.component';
+import { ProfileComponent } from './users/profile/profile.component';
+import { ReviewCreationComponent } from './users/review-creation/review-creation.component';
 import { UserFeedComponent } from './users/user-feed/user-feed.component';
 import { UsersComponent } from './users/users.component';
 
@@ -20,6 +22,14 @@ const routes: Routes = [
     {
       path: 'notification',
       component: NotificationComponent
+    },
+    {
+      path: 'new',
+      component: ReviewCreationComponent
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent
     }
 
   ]
