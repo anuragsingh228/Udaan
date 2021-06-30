@@ -1,0 +1,15 @@
+.reviewtitle {
+  font-size: 150%;
+  font-weight: 1000 !important;
+}
+
+.content {
+  margin-top: 3%;
+  font-size: 150%;
+  line-height: 1.6;
+}
+
+.comments {
+  font-size: 0.9em !important;
+  line-height: 1;
+}

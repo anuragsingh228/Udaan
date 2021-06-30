@@ -16,7 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
 import { ReviewCreationComponent } from './users/review-creation/review-creation.component';
 import { QuillModule } from 'ngx-quill';
-import { ProfileComponent } from './users/profile/profile.component'
+import { ProfileComponent } from './users/profile/profile.component';
+import { UsersListComponent } from './shared/users-list/users-list.component';
+import { ReviewComponent } from './users/review/review.component';
+import { PostCreationComponent } from './users/post-creation/post-creation.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import { ProfileComponent } from './users/profile/profile.component'
     BooksComponent,
     RateNowBooksComponent,
     ReviewCreationComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsersListComponent,
+    ReviewComponent,
+    PostCreationComponent
   ],
   imports: [
     BrowserModule,
