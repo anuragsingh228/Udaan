@@ -9,7 +9,7 @@ const ReviewSchema = new Schema({
     required: true,
   },
   bookName: {
-    type: ObjectId,
+    type: String,
     required: true,
   },
   content: {

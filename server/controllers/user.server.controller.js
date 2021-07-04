@@ -33,11 +33,13 @@ exports.signIn = async(req, res) => {
         },
         authKey,
         {
-          expiresIn: "48h",
+          expiresIn: 400000,
         }
       );
       return res.status(200).json({
-        authToken,
+        idToken: authToken,
+        expiresIn: 400000,
+        user: user
       });
     } catch (err) {
       return res.status(500).json({ errors: [{ msg: "Server Error" }] });
@@ -76,7 +78,7 @@ exports.signUp=  async(req, res) => {
     } catch (err) {
       return res.status(500).json({ errors: [{ msg: "Server Error" }] });
     }
-  
+
 }
 
 // Three conditions possible -
@@ -97,7 +99,7 @@ exports.getProfile = async (req, res, next) => {
         return res.status(400).json(err);
       }
     });
-      
+
   }
-  
+
 }

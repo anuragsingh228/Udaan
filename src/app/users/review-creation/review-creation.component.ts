@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { UserService } from '../users.service';
+
 
 @Component({
   selector: 'app-review-creation',
@@ -6,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./review-creation.component.css']
 })
 export class ReviewCreationComponent implements OnInit {
+  tags=  new Set<string>();
 
-  constructor() { }
+  constructor(public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  justChecking="Hello I am Anurag Singh";
+  justChecking="";
 
   basicEditorOptions = {
 		toolbar: [
@@ -26,5 +31,19 @@ export class ReviewCreationComponent implements OnInit {
 			['link', 'image']
 		]
 	};
+
+  onSubmit(form: NgForm){
+    console.log(form);
+    this.userService.addReview(form.value.bookName, form.value.content);
+    form.resetForm();
+    this.router.navigate(['']);
+  }
+
+  addTag(tag){
+    this.tags.add(tag);
+  }
+  removeTag(tag){
+    this.tags.delete(tag);
+  }
 
 }

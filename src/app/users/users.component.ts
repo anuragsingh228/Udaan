@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 declare const $: any;
 
@@ -9,7 +12,7 @@ declare const $: any;
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService, private router: Router ) { }
 
   ngOnInit(): void {
   }
@@ -23,5 +26,10 @@ export class UsersComponent implements OnInit {
     initialRating: 3,
     maxRating: 5
   })};
+
+  signOut(){
+    this.authService.logout();
+    this.router.navigate(['home']);
+  }
 
 }

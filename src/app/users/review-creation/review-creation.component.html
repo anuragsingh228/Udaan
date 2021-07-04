@@ -1,41 +1,40 @@
 <div id="quill">
   <div  style="padding: 5%">
-    <div class="ui  grid">
-      <div class="left floated left aligned twelve wide column">
-        <div class="ui red horizontal label">Fruit <i class="delete icon"></i></div>
-        <div class="ui purple horizontal label">Candy <i class="delete icon"></i></div>
-        <div class="ui horizontal label">Dog <i class="delete icon"></i></div>
-        <div class="ui right labeled left icon input">
-          <i class="tags icon"></i>
-          <input type="text" placeholder="Enter tags">
-          <a class="ui tag label">
-            Add Tag
-          </a>
+    <form (submit) = "onSubmit(createReviewForm)" #createReviewForm = "ngForm">
+      <div class="ui  grid">
+        <div class="left floated left aligned twelve wide column">
+          <div class="ui red horizontal label" *ngFor="let tag of tags">{{tag}} <i class="delete icon" (click) = "removeTag(tag)"></i></div>
+          <div class="ui right labeled left icon input">
+            <i class="tags icon"></i>
+            <input type="text" #inputtag placeholder="Enter tags">
+            <a class="ui tag label" (click)="addTag(inputtag.value)">
+              Add Tag
+            </a>
+          </div>
+        </div>
+
+        <div class="right floated right aligned four wide column">
+          <button class="ui button">
+            Draft
+          </button>
+          <button class="ui primary button">
+            Publish
+          </button>
         </div>
       </div>
-
-      <div class="right floated right aligned four wide column">
-        <button class="ui button">
-          Draft
-        </button>
-        <button class="ui primary button">
-          Publish
-        </button>
+      <div class="ui fluid icon input" style="padding-top: 3%;">
+        <input type="text" placeholder="Enter the title of your review.." name="bookName"  ngModel #bookNameInput = "ngModel" required>
       </div>
-    </div>
-    <div class="ui fluid icon input" style="padding-top: 3%;">
-      <input type="text" placeholder="Enter the title of your review..">
-    </div>
-    <div style="padding-top: 3%;">
-      <quill-editor
-    name="description"
-		placeholder="Enter the question description here."
-		[ngModel]="justChecking"
-		(ngModelChange)="justChecking = $event"
-		[modules]="basicEditorOptions"
-		[styles]="{ 'height': '350px', 'max-height': '350px' }"
-   >
-  </quill-editor>
-    </div>
+      <div style="padding-top: 3%;">
+        <quill-editor
+      name="content"
+      placeholder="Enter the question description here."
+      [(ngModel)]="justChecking"
+      [modules]="basicEditorOptions"
+      [styles]="{ 'height': '350px', 'max-height': '350px' }"
+     >
+    </quill-editor>
+      </div>
+    </form>
   </div>
 </div>

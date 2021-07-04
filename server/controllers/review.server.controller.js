@@ -12,7 +12,7 @@ exports.justChecking = (req, res) => {
 exports.getAllReview = (req, res, next) => {
     Review.find({}, function(err, reviews) {
       if(!err){
-        res.status(200).json(reviews);  
+        res.status(200).json(reviews);
       } else{
           console.log(err);
       }
@@ -50,7 +50,6 @@ exports.addReview =  (req, res, next) => {
 /*************** Add activity to the review *******************/
 
 exports.addActivity = (req, res, next) => {
-  console.log("Trying to run");
 	Review.updateOne({_id: req.id}, { $push: { activity: req.activity } },(err, review) => {
     if(!err){
       res.status(200).json(review);
@@ -62,4 +61,6 @@ exports.addActivity = (req, res, next) => {
 
 
 /****************** Get all the reviews for a particular User  ************/
+exports.getAllReviewByUser = (req, res, next) => {
 
+}
