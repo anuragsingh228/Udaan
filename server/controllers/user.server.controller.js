@@ -18,13 +18,13 @@ exports.signIn = async(req, res) => {
       let user = await User.findOne({ email });
       if (!user) {
         return res
-          .status(404)
+          .status(200)
           .json({ errors: [{ msg: "User does not exists" }] });
       }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         return res
-          .status(400)
+          .status(200)
           .json({ errors: [{ msg: "Password does not match" }] });
       }
       const authToken = jwt.sign(
@@ -87,7 +87,7 @@ exports.signUp=  async(req, res) => {
 // 3)User want to see own profile (Loged in)
 exports.getProfile = async (req, res, next) => {
   let username = req.params.username;
-  var query = User.findOne({ username: username }).select('-followers -following -activity -savedreviews -_id -password');
+  var query = User.findOne({ username: username }).select('-followers -following -activity -savedreviews -password');
 
   if(req.params.username === req.user?.username){
     return res.status(200).json(req.user);
@@ -99,7 +99,57 @@ exports.getProfile = async (req, res, next) => {
         return res.status(400).json(err);
       }
     });
-
   }
+}
 
+/**************Get Names, Given the UserIds *******************/
+exports.getUserNames = (req, res, next) => {
+  let userids = req.body.userids
+  console.log(userids);
+  const query  = User.find({"_id": {$in: userids} }).select('name -_id')
+  query.exec((err, users) => {
+    if(err){
+      console.log(err);
+    } else {
+      res.status(200).json(users);
+    }
+  })
+}
+
+/***************** Add Review Id in the User Review Field ************/
+
+exports.addReviewToUser = (req, res, next) => {
+  const userid = req.user._id;
+  const reviewid = req.id;
+  User.updateOne({_id: userid}, { $push: { reviews: reviewid } },(err, response) => {
+    if(!err){
+      next()
+    } else{
+      console.log(err);
+    }
+  } );
+}
+
+
+/******************* Update Profile Of User ************************/
+exports.updateProfile = (req, res, next) => {
+  const filter = {_id: req.user._id};
+  const update = {name: req.body.name, status: req.body.status, interests: req.body.interests };
+  User.findOneAndUpdate(filter, update, (err, user) => {
+    res.status(200).json(user);
+  });
+}
+
+/********************** Get User Public Information By Id  *******/
+exports.basicInfoUserById =  (req, res, next) => {
+  let userid = req.params.id
+  var query = User.findById( userid ).select('-followers -following -activity -savedreviews -password');
+  query.exec((err, user)=>{
+    if(err){
+      console.log(err);
+    } else {
+      req.demouser = user;
+      next();
+    }
+  })
 }

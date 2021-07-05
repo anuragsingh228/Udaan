@@ -5,7 +5,6 @@ const authKey="loremipsom"
 
 exports.isUserAuth = (req, res, next) => {
   const token = req.header("Bearer");
-  console.log(token);
   if (token) {
     jwt.verify(token, authKey, (err, payload) => {
       if (err) {
@@ -16,7 +15,6 @@ exports.isUserAuth = (req, res, next) => {
         .select("-password")
         .then((userdata) => {
           req.user = userdata;
-          console.log(req.user);
           next();
         });
     });

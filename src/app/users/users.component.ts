@@ -11,10 +11,13 @@ declare const $: any;
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  username=""
 
   constructor(public authService: AuthService, private router: Router ) { }
 
   ngOnInit(): void {
+    this.username=JSON.parse(localStorage.getItem("user")).username;
+    console.log(JSON.parse(localStorage.getItem("user")))
   }
 
   toggleMenuBar(){

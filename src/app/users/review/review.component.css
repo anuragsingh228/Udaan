@@ -1,3 +1,21 @@
+/* Quill editor - custom styling for preview */
+.preview-editor ::ng-deep .ql-container.ql-disabled {
+  border: none;
+}
+.preview-editor ::ng-deep .ql-editor {
+  font-family: "Inter";
+  padding: 0;
+}
+.preview-editor ::ng-deep .ql-editor p {
+  margin-top: 3%;
+  font-size: 150%;
+  line-height: 1.6;
+  /* line-height: 24px; */
+}
+.preview-editor ::ng-deep .ql-editor.ql-blank::before {
+  left: 0;
+}
+
 .reviewtitle {
   font-size: 150%;
   font-weight: 1000 !important;

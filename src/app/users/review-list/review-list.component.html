@@ -1,64 +1,30 @@
-<div class="ui card" style="width: 100%">
-  <div class="content">
-    <div class="header">The Intelligent Investor</div>
-    <div class="meta">
-      <span class="right floated time">2 days ago</span>
-      <span class="category">Investment</span>
+<a *ngFor="let review of allreview" [routerLink]="'review/'+ review._id" style="padding-top: 2%; cursor: pointer;" >
+  <div class="ui card" style="width: 100% " >
+    <div class="content">
+      <div class="header">{{ review.title}}</div>
+      <div class="meta">
+        <span class="right floated time">2 days ago</span>
+        <span class="category">{{ review.subheader}}</span>
+      </div>
+      <div class="description">
+        <quill-editor
+          class="preview-editor"
+          [ngModel]="stripTags(review.content)"
+          placeholder="No description set."
+          [modules]="viewOnlyEditorOption"
+          [readOnly]="true"
+        >
+        </quill-editor>
+      </div>
     </div>
-    <div class="description">
-      <p> The Intelligent Investor by Benjamin Graham, first published in 1949, is a widely acclaimed book on value investing. The book teaches readers strategies on how to successfully use value investing in the stock market. </p>
+    <div class="extra content">
+      <div class="right floated author">
+        <img class="ui avatar image" src="../../../assets/matt.jpg"> Matt
+      </div>
     </div>
   </div>
-  <div class="extra content">
-    <div class="right floated author">
-      <img class="ui avatar image" src="../../../assets/matt.jpg"> Matt
-    </div>
-  </div>
-</div>
+  <br>
+  <br>
+</a>
 
-<div class="ui card" style="width: 100%">
-  <div class="content">
-    <div class="header">Do It Today: Overcome Procrastination, Improve Productivity, ...</div>
-    <div class="meta">
-      <span class="right floated time">5 days ago</span>
-      <span class="category">Personal Growth</span>
-    </div>
-    <div class="description">
-      <p> Are you also tired of putting off your dreams until "tomorrow?" Guess what! Tomorrow never comes. Am I right? I've procrastinated and putt off my desire to write a book for a decade. I always came up with excuses like, "it's not the right time." Or, "I need to do more research." </p>
-    </div>
-  </div>
-  <div class="extra content">
-    <div class="right floated author">
-      <img class="ui avatar image" src="../../../assets/matt.jpg"> Matt
-    </div>
-  </div>
-</div>
-<div class="ui cards">
-  <div class="card">
-    <div class="content">
-      <div class="header">Surely You're Joking, Mr. Feynman!</div>
-      <div class="meta">Philosphy</div>
-      <div class="description">
-        "Surely You're Joking, Mr. Feynman!": Adventures of a Curious Character is an edited collection of reminiscences by the Nobel Prize-winning physicist Richard Feynman.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <div class="header">Veronika Ossi</div>
-      <div class="meta">Friend</div>
-      <div class="description">
-        Veronika Ossi is a set designer living in New York who enjoys kittens, music, and partying.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <div class="header">Jenny Hess</div>
-      <div class="meta">Friend</div>
-      <div class="description">
-        Jenny is a student studying Media Management at the New School
-      </div>
-    </div>
-  </div>
-</div>
+<app-post-list></app-post-list>

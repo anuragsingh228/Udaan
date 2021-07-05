@@ -14,16 +14,19 @@
         </div>
 
         <div class="right floated right aligned four wide column">
-          <button class="ui button">
+          <button class="ui button" (click)="onDraft()">
             Draft
           </button>
-          <button class="ui primary button">
+          <button class="ui primary button" (click)="onPublish()">
             Publish
           </button>
         </div>
       </div>
       <div class="ui fluid icon input" style="padding-top: 3%;">
-        <input type="text" placeholder="Enter the title of your review.." name="bookName"  ngModel #bookNameInput = "ngModel" required>
+        <input type="text" placeholder="Enter the title of your review.." name="title"  ngModel #titleInput = "ngModel" required>
+      </div>
+      <div class="ui fluid icon input" style="padding-top: 1%;">
+        <input type="text" placeholder="Enter a subheader of your review .." name="subheader"  ngModel #subheaderInput = "ngModel" required>
       </div>
       <div style="padding-top: 3%;">
         <quill-editor

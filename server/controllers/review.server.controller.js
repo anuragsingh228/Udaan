@@ -10,7 +10,8 @@ exports.justChecking = (req, res) => {
 /*****************************  Get All Reviews ****************/
 
 exports.getAllReview = (req, res, next) => {
-    Review.find({}, function(err, reviews) {
+  const query = Review.find({}).select(('-activity -isPublished -activity -updatedAt'))
+    query.exec( function(err, reviews) {
       if(!err){
         res.status(200).json(reviews);
       } else{
@@ -22,15 +23,17 @@ exports.getAllReview = (req, res, next) => {
 /**********************  Add new Review ********************************/
 
 exports.addReview =  (req, res, next) => {
-    const { bookName, content } = req.body;
+    const { title, content,  subheader,  tags, isPublished } = req.body;
     const createdBy = [req.user._id];
     try {
         const newReview = Review({
             createdBy,
-            bookName,
+            title,
             content,
+            subheader,
+            tags,
+            isPublished
           });
-        console.log(newReview);
           newReview.save((err, review) => {
             if(!err){
               req.id=review._id;
@@ -61,6 +64,28 @@ exports.addActivity = (req, res, next) => {
 
 
 /****************** Get all the reviews for a particular User  ************/
-exports.getAllReviewByUser = (req, res, next) => {
 
+exports.getAllReviewByUser = (req, res, next) => {
+  const revieIds = req.demouser.reviews
+  const query  = Review.find({"_id": {$in: revieIds} })
+  query.exec((err, reviews) => {
+    if(err){
+      console.log(err)
+    } else {
+      res.status(200).json(reviews);
+    }
+  })
+}
+
+/****************** Get an review by id  **********************************/
+exports.getRevieById = (req, res, next) => {
+  const id = req.params.id
+  const query = Review.findById(id).select('-activity -isPublished -activity -updatedAt')
+  query.exec((err, review) => {
+    if(review){
+      return res.status(200).json(review);
+    } else{
+      return res.status(400).json(err);
+    }
+  });
 }

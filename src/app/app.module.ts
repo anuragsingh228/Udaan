@@ -23,6 +23,7 @@ import { ReviewComponent } from './users/review/review.component';
 import { PostCreationComponent } from './users/post-creation/post-creation.component'
 import { AuthInterceptor } from './app.http.inteceptor';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { PostListComponent } from './users/post-list/post-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { AuthGuardService } from './auth/auth-guard.service';
     ProfileComponent,
     UsersListComponent,
     ReviewComponent,
-    PostCreationComponent
+    PostCreationComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,

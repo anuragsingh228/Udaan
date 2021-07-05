@@ -23,14 +23,20 @@ export class AuthService {
       })
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string, callback) {
     const authData = {
       email: email,
       password: password
     }
     this.http.post("http://localhost:3000/users/login",  authData)
     .subscribe(response => {
-      this.setSession(response);
+      if(!response["idToken"]){
+        callback(response);
+      } else{
+        this.setSession(response);
+        callback(response);
+      }
+
     })
   }
 

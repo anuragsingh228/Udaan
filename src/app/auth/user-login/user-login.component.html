@@ -27,6 +27,9 @@
         <div class="ui error message"></div>
 
       </form>
+      <div class="ui error message" *ngIf="loginerrors.length>0">
+        <p *ngFor="let error of loginerrors">{{ error.msg}}</p>
+      </div>
 
       <div class="ui message">
         New to us? <a routerLink="/signup">Register</a>

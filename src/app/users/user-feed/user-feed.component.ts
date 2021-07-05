@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../users.service';
 
 declare const $: any;
 @Component({
@@ -7,11 +8,21 @@ declare const $: any;
   styleUrls: ['./user-feed.component.css']
 })
 export class UserFeedComponent implements OnInit {
+  allreview: any;
 
-  constructor() { }
+  constructor( public userService: UserService) { }
 
   ngOnInit(): void {
     this.initialiseRating();
+    this.getAllreview();
+
+  }
+
+  getAllreview(){
+    this.userService.getAllReviews((allreview) => {
+      this.allreview=allreview;
+      console.log(this.allreview)
+    })
   }
 
 

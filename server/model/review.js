@@ -8,13 +8,23 @@ const ReviewSchema = new Schema({
     type: [ObjectId],
     required: true,
   },
-  bookName: {
+  title:{
     type: String,
     required: true,
+  },
+  subheader: {
+    type: String
+  },
+  bookName: {
+    type: String,
   },
   content: {
     type: String,
     required: true,
+  },
+  tags: {
+    type: [String],
+    default: []
   },
   activity:{
     type: [String],
@@ -23,10 +33,6 @@ const ReviewSchema = new Schema({
   likes: {
     type: Number,
     default: 0,
-  },
-  comments: {
-    type: [ObjectId],
-    default: [],
   },
   isPublished: {
     type: Boolean,

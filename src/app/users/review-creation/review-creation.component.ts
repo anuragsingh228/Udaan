@@ -11,6 +11,7 @@ import { UserService } from '../users.service';
 })
 export class ReviewCreationComponent implements OnInit {
   tags=  new Set<string>();
+  isPublish : boolean;
 
   constructor(public userService: UserService, private router: Router) { }
 
@@ -34,7 +35,8 @@ export class ReviewCreationComponent implements OnInit {
 
   onSubmit(form: NgForm){
     console.log(form);
-    this.userService.addReview(form.value.bookName, form.value.content);
+    let tags = Array.from(this.tags)
+    this.userService.addReview(form.value.title, form.value.content, form.value.subheader, tags, this.isPublish );
     form.resetForm();
     this.router.navigate(['']);
   }
@@ -44,6 +46,12 @@ export class ReviewCreationComponent implements OnInit {
   }
   removeTag(tag){
     this.tags.delete(tag);
+  }
+  onDraft(){
+    this.isPublish=false
+  }
+  onPublish(){
+    this.isPublish=true;
   }
 
 }
